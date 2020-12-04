@@ -1,0 +1,13 @@
+cradle:
+  stack:
+    - path: "./src"
+      component: "puzzle1:lib"
+
+    - path: "./app/Main.hs"
+      component: "puzzle1:exe:puzzle1-exe"
+
+    - path: "./app/Paths_puzzle1.hs"
+      component: "puzzle1:exe:puzzle1-exe"
+
+    - path: "./test"
+      component: "puzzle1:test:puzzle1-test"
