@@ -68,9 +68,9 @@ public class Main {
             boolean isJmp = instr.getType() == InstructionType.JMP;
             boolean isNop = instr.getType() == InstructionType.NOP;
             if (isJmp) {
-                instr.setType(InstructionType.NOP);
+                program.set(idx, new Instruction(InstructionType.NOP, instr.getOffset()));
             } else if (isNop) {
-                instr.setType(InstructionType.JMP);
+                program.set(idx, new Instruction(InstructionType.JMP, instr.getOffset()));
             }
             var computer = new ComputerState(program);
             boolean wasSuccessful = computer.run();
@@ -79,9 +79,9 @@ public class Main {
                 break;
             }
             if (isJmp) {
-                instr.setType(InstructionType.JMP);
+                program.set(idx, instr);
             } else if (isNop) {
-                instr.setType(InstructionType.NOP);
+                program.set(idx, instr);
             }
         }
     }

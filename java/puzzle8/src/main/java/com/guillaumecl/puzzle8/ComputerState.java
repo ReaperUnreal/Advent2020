@@ -1,6 +1,8 @@
 package com.guillaumecl.puzzle8;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public final class ComputerState {
@@ -8,10 +10,13 @@ public final class ComputerState {
     private int ip;
     private int acc;
 
+    private final Set<Integer> visitedInstructions;
+
     public ComputerState(List<Instruction> program) {
         this.program = program;
         ip = 0;
         acc = 0;
+        visitedInstructions = new HashSet<>();
     }
 
     public int getIp() {
@@ -37,7 +42,7 @@ public final class ComputerState {
     private void resetState() {
         ip = 0;
         acc = 0;
-        program.forEach(Instruction::reset);
+        visitedInstructions.clear();
     }
 
     public boolean run() {
@@ -49,9 +54,10 @@ public final class ComputerState {
                 return false;
             }
             var instr = program.get(ip);
-            if (instr.isHasExecuted()) {
+            if (visitedInstructions.contains(ip)) {
                 return false;
             }
+            visitedInstructions.add(ip);
             instr.execute(this);
         }
     }

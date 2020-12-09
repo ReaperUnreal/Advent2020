@@ -5,35 +5,20 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.Optional;
 
 public final class Instruction {
-    private InstructionType type;
+    private final InstructionType type;
     private final int offset;
-
-    private boolean hasExecuted;
 
     public Instruction(InstructionType type, int offset) {
         this.type = type;
         this.offset = offset;
-        hasExecuted = false;
-    }
-
-    public void reset() {
-        hasExecuted = false;
     }
 
     public InstructionType getType() {
         return type;
     }
 
-    public void setType(InstructionType type) {
-        this.type = type;
-    }
-
     public int getOffset() {
         return offset;
-    }
-
-    public boolean isHasExecuted() {
-        return hasExecuted;
     }
 
     public void execute(ComputerState state) {
@@ -52,7 +37,6 @@ public final class Instruction {
                 System.err.println("Unknown instruction: " + this);
                 break;
         }
-        hasExecuted = true;
     }
 
     @Override
