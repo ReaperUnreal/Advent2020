@@ -1,4 +1,6 @@
-package com.guillaumecl.puzzle12;
+package com.guillaumecl.puzzle12.part1;
+
+import com.guillaumecl.puzzle12.Instruction;
 
 public final class Step {
     private final Instruction instr;
